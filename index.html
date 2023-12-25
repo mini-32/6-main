@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+  <link rel="stylesheet" href=".\style.css" />
+  <title>首页</title>
+   <link Rel="Icon" href=".\1.png">
+  <img src=".\1 kesp.png" id="img1" onclick="function ()">
+  <body>
+   <div align="center">
+    <h3>这些都是我的网页的图片：</h3>
+    <button title="点击跳转➡" onclick="window.open('file:///E:/guazaimulu/7%20日志/index.html')">点我访问日志</button>
+     </div>
+  </body>
+  <script>
+        window.onload =  function () {
+            /**
+             * 实现点击按钮切换图片功能
+             */
+            /**
+             * imgArr 保存图片的集合
+             * index 图片的索引信息
+             * timer 保存定时器
+             */
+            let imgArr = ["1 kesp.png","2 kespenus.png","3 gxsp.png","4 fc.png","5 ml.png"];
+            let index = 0;
+            let timer;
+            let btn1 = document.getElementById("btn1");
+            let btn2 = document.getElementById("btn2");
+            let img1 = document.getElementById("img1");
+            //点击开始，定时切换图片
+            btn1.onclick = function () {
+                /**
+                 * 点击一次开始按钮，就会开启一个定时器
+                 * 如果点击多次，就会开启多个定时器，只有关闭开启的最后一个定时器时才会停止图片的切换
+                 *
+                 *注：在开启一个定时器之前我们需要将当前元素的上一个定时器关闭，这样存在的一直都是一个定时器，
+                 * 而不会同时存在多个定时器
+                 */
+                //关闭定时器
+                clearInterval(timer);
+                //开启定时器，自动切换图片
+                timer = setInterval(function () {
+                        //索引自增
+                        index++;
+                        //判断是否超出最大索引，超出最大索引后为取余 从0开始
+                        index = index % imgArr.length;
+                        //修改img1的src属性，切换图片
+                        img1.src = imgArr[index];
+                },6000)
+
+            };
+            //点击按钮2 结束按钮 定时器停止
+            btn2.onclick = function () {
+                clearInterval(timer);
+            };
+
+        };
+    </script>
+    <div align="center">
+     <button id="btn1">开始滚动图片</button>
+     <button id="btn2">结束滚动图片</button>
+    </div>
+   </head>
+</html>
